@@ -129,6 +129,7 @@ function collector(){
 				var database = loadDB();
 				if(database.length == 0){
 					database = orders;
+					saveDB(database);
 				}
 				
 				var fills = [];
@@ -148,10 +149,11 @@ function collector(){
 					var c = new Date();
 									
 					if(c.getTime() - d.getTime() < 1000*60*60*24) {
+
 						fills.push(curr);
 					}
 				}
-			
+
 				if(hasNew){
 					sendEmail(fills, orders);
 				}
