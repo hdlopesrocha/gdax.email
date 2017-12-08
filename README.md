@@ -24,8 +24,6 @@ nodejs app.js
 ```
 
 Email Example:
-{::nomarkdown}
-
 <h2>Activity Summary</h2>
 <h3>Fills:</h3>
 <table cellspacing="0" style="border-top: solid 1px =
@@ -165,7 +163,7 @@ Email Example:
    649Z</td>
 </tr>
 </table>
-{:/}
+
 
 Happy trading.
 
