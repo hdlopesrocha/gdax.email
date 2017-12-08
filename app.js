@@ -90,7 +90,7 @@ function printTable(title, data){
 }
 
 
-function sendEmail(fills,db,first){
+function sendEmail(fills,db){
 	var html = '<h2>Activity Summary</h2>';
 	html += printTable('Fills:', fills);
 	
