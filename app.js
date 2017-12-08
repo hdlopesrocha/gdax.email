@@ -14,7 +14,7 @@ var properties = PropertiesReader('application.properties');
  
 const authenticatedClient = new Gdax.AuthenticatedClient(
 	properties.get('gdax.key'),
-	properties.get('gdax.b64secret'),
+	properties.get('gdax.secret'),
 	properties.get('gdax.passphrase'),
 	'https://api.gdax.com'
 );
@@ -60,7 +60,7 @@ function printHeader(cell){
 }
 
 function printRow(row,color){
-	var html = '<tr style="background-color:'+color+';">';
+	var html = '<tr style="background-color:'+color+';'+(row.isNew?'font-weight: bold;':'' ) +' ">';
 	html += printCell(row.product_id);
 	html += printCell(row.side);
 	html += printCell(row.price);
@@ -90,10 +90,9 @@ function printTable(title, data){
 }
 
 
-function sendEmail(fills,histo,db,first){
-	var html = 'Activity Summary';
-	html += printTable('Fills', fills);
-	html += printTable('History', histo);
+function sendEmail(fills,db,first){
+	var html = '<h2>Activity Summary</h2>';
+	html += printTable('Fills:', fills);
 	
 
 	var mailOptions = {
@@ -131,33 +130,28 @@ function collector(){
 				}
 				
 				var fills = [];
-				var histo = [];
 				var hasNew = false;
+
 				for(var i in orders){
 					var oid = orders[i].trade_id;
 					var curr = getOrder(orders,oid);						
 					var prev = getOrder(database,oid);
+				
 					if(prev == null) {
 						hasNew = true;
+					}
+					curr.isNew = prev == null;
+				
+					var d = new Date(curr.created_at);
+					var c = new Date();
+									
+					if(c.getTime() - d.getTime() < 1000*60*60*24) {
 						fills.push(curr);
 					}
 				}
-				if(hasNew) { 
-					for(var i in orders){
-						var oid = orders[i].trade_id;
-						var curr = getOrder(orders,oid);						
-						var prev = getOrder(database,oid);
-					
-						var d = new Date(curr.created_at);
-						var c = new Date();
-										
-						if(c.getTime() - d.getTime() < 1000*60*60*24) {
-							histo.push(curr);
-						}
-					}
-				}
-				if(fills.length>0){
-					sendEmail(fills,histo, orders);
+			
+				if(hasNew){
+					sendEmail(fills, orders);
 				}
 			}else{
 				console.log('error',new Date());
