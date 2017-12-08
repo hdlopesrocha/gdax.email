@@ -90,7 +90,7 @@ function printTable(title, data){
 }
 
 
-function sendEmail(fills,histo,db){
+function sendEmail(fills,histo,db,first){
 	var html = 'Activity Summary';
 	html += printTable('Fills', fills);
 	html += printTable('History', histo);
@@ -126,6 +126,10 @@ function collector(){
   		if (!error && response.statusCode == 200) {
 				console.log('getFills',new Date());
 				var database = loadDB();
+				if(database.length == 0){
+					database = orders;
+				}
+				
 				var fills = [];
 				var histo = [];
 				var hasNew = false;
