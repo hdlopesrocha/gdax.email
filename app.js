@@ -34,7 +34,10 @@ function saveDB(db){
 }
 
 function loadDB(){
-	return JSON.parse(fs.readFileSync('data.json'));
+	if (fs.existsSync('data.json')) {
+		return JSON.parse(fs.readFileSync('data.json'));
+	}
+	return [];
 }
 
 function getOrder(orders,id){
@@ -108,7 +111,7 @@ function sendEmail(fills,histo,db){
 		  console.log('Message sent: ' + info.response);
 	});
 
-	if(sound.enabled){
+	if(properties.get('sound.enabled')=='true'){
 		// $ mplayer foo.mp3  
 		player.play('alert.mp3', function(err){
 			if (err) throw err;
