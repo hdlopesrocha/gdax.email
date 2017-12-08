@@ -1,7 +1,7 @@
 # gdax.email
 GDAX email notifications
 
-This app fetches your gdax account for any buy/sell every 10 seconds.
+This app fetches your gdax account for any buy/sell every 30 seconds.
 
 A report is sent every time there is a new fill.
 
