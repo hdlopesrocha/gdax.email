@@ -1,0 +1,20 @@
+{
+  "name": "gbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "gdax": "^0.4.2",
+    "mongodb": "^2.2.31",
+    "nodemailer": "^4.4.0",
+    "play-sound": "^1.1.1",
+    "properties-reader": "0.0.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrique Rocha",
+  "license": "ISC"
+}
