@@ -9,7 +9,6 @@ This app fetches your gdax account every 30 seconds. A report is sent every time
 
 * Install dependencies:
 ```
-npm install express --save
 npm install gdax --save
 npm install nodemailer --save
 npm install play-sound --save
