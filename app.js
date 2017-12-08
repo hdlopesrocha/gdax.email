@@ -1,11 +1,9 @@
-// npm install express --save
 // npm install gdax --save
 // npm install nodemailer --save
 // npm install play-sound --save
 // npm install properties-reader --save
 
 const fs = require('fs');
-const express = require('express');
 const Gdax = require('gdax');
 var nodemailer = require('nodemailer');	// requires node 6.x
 var player = require('play-sound')(opts = {})
