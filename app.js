@@ -10,8 +10,10 @@ const Gdax = require('gdax');
 var nodemailer = require('nodemailer');	// requires node 6.x
 var player = require('play-sound')(opts = {})
 var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('application.properties');
- 
+var propsDir = process.argv.length == 2? 'application.properties' :  process.argv[2];
+
+var properties = PropertiesReader(propsDir);
+
 const authenticatedClient = new Gdax.AuthenticatedClient(
 	properties.get('gdax.key'),
 	properties.get('gdax.secret'),
