@@ -1,15 +1,13 @@
 # gdax.email
 GDAX email notifications
 
-This app fetches your gdax account for any buy/sell every 30 seconds.
+This app fetches your gdax account every 30 seconds. A report is sent every time there is a new fill (buy/sell).
 
-A report is sent every time there is a new fill.
+* Create a GDAX API key.
 
-Create a GDAX API key.
+* Add your credentials to **application.properties** 
 
-Add your credentials to **application.properties** 
-
-Dependencies:
+* Install dependencies:
 ```
 npm install express --save
 npm install gdax --save
@@ -18,7 +16,7 @@ npm install play-sound --save
 npm install properties-reader --save
 ```
 
-Run with:
+* Run with:
 ```
 nodejs app.js
 ```
