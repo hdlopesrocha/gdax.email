@@ -7,6 +7,8 @@ This app fetches your gdax account every 30 seconds. A report is sent every time
 
 * Add your credentials to **application.properties** 
 
+* Install nodejs (version >= 6)
+
 * Install dependencies:
 ```
 npm install gdax --save
